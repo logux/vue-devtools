@@ -57,6 +57,7 @@ import {
 import { client } from './logux'
 
 let app = createApp(…)
+
 let devtoolsApi = installDevtools(app, client)
 
 devtoolsApi.addTimelineEvent({
