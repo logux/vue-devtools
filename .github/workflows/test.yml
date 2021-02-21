@@ -20,22 +20,3 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Run tests
         run: yarn test
-  short:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - 14
-          - 12
-    name: Node.js ${{ matrix.node-version }} Quick
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
-      - name: Install Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2-beta
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-      - name: Run unit tests
-        run: npx jest
