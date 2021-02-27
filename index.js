@@ -29,9 +29,10 @@ export function devtools (app, client, options = {}) {
   setupDevtoolsPlugin(
     {
       id: 'logux',
-      label: 'Logux devtools',
+      label: 'Logux Vue Devtools',
       packageName: '@logux/vue-devtools',
       homepage: 'https://github.com/logux/vue-devtools',
+      logo: 'https://logux.io/branding/logo.svg',
       app
     },
     api => {
