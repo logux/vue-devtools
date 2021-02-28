@@ -48,12 +48,32 @@ export interface DevtoolsOptions {
   ignoreActions?: string[]
 }
 
+export interface VueDevtools {
+  /**
+   * Vue Devtools API
+   */
+  api: DevtoolsPluginApi | null
+
+  /**
+   * Plugin installer.
+   *
+   * @param app Vue app instance.
+   * @param client Logux Client instance.
+   * @param options Disable specific layers or action types.
+   */
+  install(
+    app: App,
+    client: Client | CrossTabClient,
+    options?: DevtoolsOptions
+  ): void
+}
+
 /**
  * Vue Devtools plugin that adds Logux events to the timeline.
  *
  * ```js
  * import { createApp } from 'vue'
- * import { devtools } from '@logux/vuex'
+ * import { devtools } from '@logux/vue-devtools'
  *
  * import { client } from './logux'
  *
@@ -66,13 +86,5 @@ export interface DevtoolsOptions {
  *   ignoreActions: ['user/add']
  * })
  * ```
- *
- * @param app Vue app instance.
- * @param client Logux Client instance.
- * @param options Disable specific layers or action types.
  */
-export function devtools (
-  app: App,
-  client: Client | CrossTabClient,
-  options?: DevtoolsOptions
-): DevtoolsPluginApi
+export const devtools: VueDevtools

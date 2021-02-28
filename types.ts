@@ -13,17 +13,11 @@ let app = createApp(() => () => null)
 
 app.use(devtools)
 
-devtools(app, client, {
+devtools.install(app, client, {
   ignoreActions: ['user/add']
 })
 
-let api = devtools(app, client, {
-  layers: {
-    state: false
-  }
-})
-
-api.addTimelineEvent({
+devtools.api?.addTimelineEvent({
   layerId: actionLayerId,
   event: {
     time: Date.now(),

@@ -49,22 +49,21 @@ app.use(devtools, client, {
 
 ```js
 import { createApp } from 'vue'
-import {
-  devtools: installDevtools,
-  actionLayerId
-} from '@logux/vue-devtools'
+import { devtools, actionLayerId } from '@logux/vue-devtools'
 
 import { client } from './logux'
 
 let app = createApp(…)
 
-let devtoolsApi = installDevtools(app, client)
+app.use(devtools, client)
 
-devtoolsApi.addTimelineEvent({
-  layerId: actionLayerId,
-  event: {
-    time: Date.now(),
-    data: { … }
-  }
-})
+if (devtools.api) {
+  devtools.api.addTimelineEvent({
+    layerId: actionLayerId,
+    event: {
+      time: Date.now(),
+      data: { … }
+    }
+  })
+}
 ```
