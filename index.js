@@ -39,16 +39,18 @@ export const devtools = {
       api => {
         devtools.api = api
 
-        api.on.inspectComponent(payload => {
-          if (payload.instanceData) {
-            payload.instanceData.state.push({
-              type: 'Logux',
-              key: '$client',
-              editable: false,
-              value: client
-            })
-          }
-        })
+        if (options.client !== false) {
+          api.on.inspectComponent(payload => {
+            if (payload.instanceData) {
+              payload.instanceData.state.push({
+                type: 'Logux',
+                key: '$client',
+                editable: false,
+                value: client
+              })
+            }
+          })
+        }
 
         if (layers.state !== false) {
           api.addTimelineLayer({

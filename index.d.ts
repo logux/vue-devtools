@@ -43,6 +43,11 @@ export interface DevtoolsOptions {
   }
 
   /**
+   * Disable Logux Client in the componenet inspector.
+   */
+  client?: boolean
+
+  /**
    * Disable action messages with specific types.
    */
   ignoreActions?: string[]
