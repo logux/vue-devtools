@@ -156,9 +156,10 @@ export const devtools = {
         if (layers.subscription !== false) {
           client.on('add', (action, meta) => {
             if (
+              action.type !== 'logux/processed' &&
               action.type !== 'logux/subscribe' &&
-              action.type !== 'logux/unsubscribe' &&
-              action.type !== 'logux/processed'
+              action.type !== 'logux/subscribed' &&
+              action.type !== 'logux/unsubscribe'
             ) {
               return
             }
@@ -218,6 +219,17 @@ export const devtools = {
                   delete subscribing[action.id]
                 }
               }
+            } else if (action.type === 'logux/subscribed') {
+              api.addTimelineEvent({
+                layerId: subscriptionLayerId,
+                event: {
+                  time,
+                  data: {
+                    type: 'subscribed by server',
+                    channel: action.channel
+                  }
+                }
+              })
             }
           })
         }
