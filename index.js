@@ -1,5 +1,5 @@
 import { setupDevtoolsPlugin } from '@vue/devtools-api'
-import { parseId } from '@logux/core/parse-id'
+import { parseId } from '@logux/core'
 
 export const userLayerId = 'logux:user'
 export const roleLayerId = 'logux:role'
