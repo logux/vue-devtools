@@ -17,6 +17,9 @@ between client, server, and other clients.
 This repository contains plugin for [Vue devtools](https://github.com/vuejs/vue-devtools) browser extension
 for debugging Logux application based on Vue.
 
+<p align="center">
+  <img src="img/screenshot.jpg" alt="Logux Vue Devtools screenshot in Chrome" width="720">
+</p>
 
 ## Install
 
