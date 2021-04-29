@@ -1,6 +1,6 @@
 {
   "name": "@logux/vue-devtools",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Vue devtools plugin for debugging Logux applications",
   "keywords": [
     "logux",
