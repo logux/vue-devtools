@@ -32,7 +32,7 @@
     "vue": ">=3.0.11"
   },
   "dependencies": {
-    "@vue/devtools-api": "^6.0.0-beta.8"
+    "@vue/devtools-api": "^6.0.0-beta.12"
   },
   "devDependencies": {
     "@logux/client": "^0.11.1",
