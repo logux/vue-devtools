@@ -102,11 +102,11 @@ export const devtools = {
 
         if (layers.state !== false) {
           client.on('state', () => {
-            let details
+            let data = {}
             let time = Date.now()
 
             if (client.state === 'connecting' && node.connection.url) {
-              details = {
+              data = {
                 nodeId: node.localNodeId,
                 server: node.connection.url
               }
@@ -116,24 +116,17 @@ export const devtools = {
               node.remoteNodeId
             ) {
               prevConnected = true
-              details = {
+              data = {
                 server: node.remoteNodeId
               }
             } else if (!client.connected) {
               prevConnected = false
             }
 
-            let data = {
-              state: client.state
-            }
-
-            if (details) {
-              data.details = details
-            }
-
             api.addTimelineEvent({
               layerId: stateLayerId,
               event: {
+                title: client.state,
                 time,
                 data
               }
@@ -146,6 +139,8 @@ export const devtools = {
             api.addTimelineEvent({
               layerId: roleLayerId,
               event: {
+                title: 'Changed',
+                subtitle: client.role,
                 time: Date.now(),
                 data: {
                   role: client.role
@@ -173,32 +168,25 @@ export const devtools = {
             let time = Date.now()
 
             if (action.type === 'logux/subscribe') {
-              let data = {
-                type: 'subscribing',
-                channel: action.channel
-              }
-
-              if (Object.keys(action).length === 2) {
-                data.action = action
-              }
-
               api.addTimelineEvent({
                 layerId: subscriptionLayerId,
-                event: { time, data }
+                event: {
+                  title: 'Subscribing',
+                  subtitle: action.channel,
+                  groupId: meta.id,
+                  time,
+                  data: { action, meta }
+                }
               })
             } else if (action.type === 'logux/unsubscribe') {
-              let data = {
-                type: 'unsubscribed',
-                channel: action.channel
-              }
-
-              if (Object.keys(action).length === 2) {
-                data.action = action
-              }
-
               api.addTimelineEvent({
                 layerId: subscriptionLayerId,
-                event: { time, data }
+                event: {
+                  title: 'Unsubscribed',
+                  subtitle: action.channel,
+                  time,
+                  data: { action, meta }
+                }
               })
             } else if (action.type === 'logux/processed') {
               if (subscribing[action.id]) {
@@ -207,10 +195,11 @@ export const devtools = {
                   api.addTimelineEvent({
                     layerId: subscriptionLayerId,
                     event: {
+                      title: 'Subscribed',
+                      subtitle: processed.channel,
+                      groupId: action.id,
                       time,
                       data: {
-                        type: 'subscribed',
-                        channel: processed.channel,
                         action: processed
                       }
                     }
@@ -225,11 +214,10 @@ export const devtools = {
               api.addTimelineEvent({
                 layerId: subscriptionLayerId,
                 event: {
+                  title: 'Subscribed by server',
+                  subtitle: action.channel,
                   time,
-                  data: {
-                    type: 'subscribed by server',
-                    channel: action.channel
-                  }
+                  data: { action, meta }
                 }
               })
             }
@@ -255,11 +243,10 @@ export const devtools = {
                     api.addTimelineEvent({
                       layerId: actionLayerId,
                       event: {
+                        title: 'Processed',
+                        subtitle: processed.type,
                         time,
-                        data: {
-                          type: 'processed',
-                          action: processed
-                        }
+                        data: { processed, action, meta }
                       }
                     })
                   }
@@ -268,57 +255,57 @@ export const devtools = {
                   api.addTimelineEvent({
                     layerId: actionLayerId,
                     event: {
+                      title: 'Processed',
                       time,
-                      data: {
-                        type: 'processed',
-                        action
-                      }
+                      data: { action, meta }
                     }
                   })
                 }
               } else if (action.type === 'logux/undo') {
                 let data = {
-                  type: 'undid',
-                  actionId: action.id,
-                  reason: action.reason
+                  reason: action.reason,
+                  action,
+                  meta
                 }
 
                 if (sent[action.id]) {
-                  data.details = {
+                  data.undone = {
                     action: sent[action.id]
                   }
                   delete sent[action.id]
                 }
 
-                if (Object.keys(action).length > 3) {
-                  if (!data.details) data.details = {}
-                  data.details.undo = action
-                }
-
                 api.addTimelineEvent({
                   layerId: actionLayerId,
-                  event: { time, data }
+                  event: {
+                    title: 'Undid',
+                    subtitle: data.undone.type || '',
+                    time,
+                    data
+                  }
                 })
               } else {
-                let data = {
-                  type: 'added',
-                  action,
-                  meta
-                }
+                let title = 'Added'
+                let data = { action, meta }
 
                 if (meta.reasons.length === 0) {
                   cleaned[meta.id] = true
-                  data.type += ' and cleaned'
+                  title += ' and cleaned'
                 }
 
                 let { nodeId } = parseId(meta.id)
                 if (nodeId !== node.localNodeId) {
-                  data.from = nodeId
+                  data.by = nodeId
                 }
 
                 api.addTimelineEvent({
                   layerId: actionLayerId,
-                  event: { time, data }
+                  event: {
+                    title,
+                    subtitle: action.type,
+                    time,
+                    data
+                  }
                 })
               }
             }
@@ -330,6 +317,7 @@ export const devtools = {
             api.addTimelineEvent({
               layerId: userLayerId,
               event: {
+                title: 'Changed',
                 time: Date.now(),
                 data: {
                   userId,
@@ -353,6 +341,8 @@ export const devtools = {
             api.addTimelineEvent({
               layerId: cleanLayerId,
               event: {
+                title: 'Cleaned',
+                subtitle: action.type,
                 time: Date.now(),
                 data: { action, meta }
               }
