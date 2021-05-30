@@ -43,10 +43,10 @@ export const devtools = {
           api.on.inspectComponent(payload => {
             if (payload.instanceData) {
               payload.instanceData.state.push({
-                type: 'Logux',
                 key: '$client',
-                editable: false,
-                value: client
+                type: 'Logux',
+                value: client,
+                editable: false
               })
             }
           })
