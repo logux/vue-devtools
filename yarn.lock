@@ -300,7 +300,7 @@
   dependencies:
     globals "^13.8.0"
 
-"@logux/sharec-config@^0.10.1":
+"@logux/sharec-config@^0.10.2":
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/@logux/sharec-config/-/sharec-config-0.10.2.tgz#d7f055737ab8d09d86915ccf1f06569a31542e61"
   integrity sha512-Gs+8w61Wb8o2u2qbQgwziH4W+zC+sRxU0lfgMsRCV+bu0tvliTZsPwTcU21XBaghID8PgPBVtAHZxY+hII8+mQ==
