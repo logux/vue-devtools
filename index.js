@@ -29,12 +29,12 @@ export const devtools = {
 
     setupDevtoolsPlugin(
       {
-        id: 'logux',
+        id: 'io.logux.vue-devtools',
         label: 'Logux Vue Devtools',
         packageName: '@logux/vue-devtools',
-        homepage: 'https://github.com/logux/vue-devtools',
+        app,
         logo: 'https://logux.io/branding/logo.svg',
-        app
+        homepage: 'https://github.com/logux/vue-devtools'
       },
       api => {
         devtools.api = api
