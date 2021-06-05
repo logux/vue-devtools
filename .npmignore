@@ -7,3 +7,4 @@ test/
 **/errors.ts
 tsconfig.json
 coverage/
+img/
