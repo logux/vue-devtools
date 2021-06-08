@@ -270,17 +270,17 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
-"@logux/actions@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@logux/actions/-/actions-0.1.0.tgz#4ee83b3d26101f2fde21b3a198e6605fb032fd8b"
-  integrity sha512-TPz7g3fW7BhmwMU4XEEe2y9dSimPMutw64AjpHTNHqIVgRL4KyUHc1tkOxSursdq05zGJtnSmy5y1R2PleVmNw==
+"@logux/actions@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@logux/actions/-/actions-0.2.0.tgz#ba09a8b6e73f7c303f1103000ae455ceb09c6c95"
+  integrity sha512-i1occXt0XcJXHI2wsq/soZiMGd+CpyeKfxnF0WCY0VfMJiYSObBl7v0jEXQuFgBVWcK1CR2b6DLkdVOYvWC45Q==
 
-"@logux/client@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@logux/client/-/client-0.11.1.tgz#1e4c9d44b05e68986faf26516f0b6f9a5a42f5a3"
-  integrity sha512-/QFy2J6vnlkXXMMx/pi0M6/oeGPjQGve4O6CJEdKd8P8z6CnM9h4qy4ctS8lKXLM4aJtp2ufB3k8q7SrODQewg==
+"@logux/client@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@logux/client/-/client-0.12.0.tgz#f3c665a3077ab5aca45314b73f8f5d3fd2c0f157"
+  integrity sha512-meQVBLULsGrZeJKUWN+hCzla9wXjE0nGqwwkYPWdaXvVAYdx5docGkmi/rqJ5KZj7hMDAWAAagnR3lOOnuN+uQ==
   dependencies:
-    "@logux/actions" "^0.1.0"
+    "@logux/actions" "^0.2.0"
     fast-json-stable-stringify "^2.1.0"
     nanodelay "^2.0.0"
     nanoevents "^6.0.0"
