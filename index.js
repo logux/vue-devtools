@@ -39,6 +39,7 @@ export const devtools = {
         homepage: 'https://github.com/logux/vue-devtools',
         logo: 'https://logux.io/branding/logo.svg',
         componentStateTypes: ['Logux'],
+        enableEarlyProxy: true,
         app
       },
       api => {
