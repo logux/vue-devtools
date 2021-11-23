@@ -6,5 +6,4 @@ test/
 **/types.ts
 **/errors.ts
 tsconfig.json
-coverage/
 img/

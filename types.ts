@@ -9,7 +9,7 @@ let client = new CrossTabClient({
   userId: '10'
 })
 
-let app = createApp(() => () => null)
+let app = createApp({})
 
 app.use(devtools)
 
